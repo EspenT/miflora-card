@@ -49,7 +49,9 @@ resources:
   min_moisture: 15
   max_moisture: 60
   min_conductivity: 350
+  max_conductivity: 5000
   min_temperature: 12
+  max_temperature: 30
   entities:
   - entity: sensor.miflora_1_moisture
     type: moisture
