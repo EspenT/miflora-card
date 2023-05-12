@@ -51,7 +51,9 @@ class MifloraCard extends HTMLElement {
 
         var _maxMoisture = parseFloat(config.max_moisture);
         var _minMoisture = parseFloat(config.min_moisture);
+        var _maxConductivity = parseFloat(config.max_conductivity);
         var _minConductivity = parseFloat(config.min_conductivity);
+        var _maxTemperature = parseFloat(config.max_termperature);
         var _minTemperature = parseFloat(config.min_termperature);
 
         this.shadowRoot.getElementById('container').innerHTML = `
@@ -90,16 +92,24 @@ class MifloraCard extends HTMLElement {
                 }
             }
             if (_name == 'conductivity') {
-                if (_state < _minConductivity) {
+                if (_state > _maxConductivity) {
                     _alertStyle = ';color:red';
-                    _alertIcon = '&#9660; ';
+                    _alertIcon = '&#9650; ';
+                } else if (_state < _minConductivity) {
+                    _alertStyle = ';color:red';
+                    _alertIcon = '&#9660; '
                 }
             }
+            }
             if (_name == 'temperature') {
-                if (_state < _minTemperature) {
+                if (_state > _maxTemperature) {
                     _alertStyle = ';color:red';
-                    _alertIcon = '&#9660; ';
+                    _alertIcon = '&#9650; ';
+                } else if (_state < _minTemperature) {
+                    _alertStyle = ';color:red';
+                    _alertIcon = '&#9660; '
                 }
+            }
             }
             this.shadowRoot.getElementById('sensors').innerHTML += `
                 <div id="sensor${i}" class="sensor">
